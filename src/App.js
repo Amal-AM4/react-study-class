@@ -1,23 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import CardTitle from "./components/CardTitle";
+import MaterialButton from "./components/MaterialButton";
+
+// let firstName = "anaswara"
+// console.log(firstName);
+
+
+// function changeName(name) {
+//   firstName = name
+//   console.log(firstName);
+// }
+
 
 function App() {
+
+  const [firstName, setFirstName] = useState("anaswara")
+
+  const [age, setAge] = useState(0) 
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <MaterialButton />
+      <MaterialButton />
+
+      <CardTitle name={'Amal'} mail={'amal@gmail.com'} />
+      <CardTitle name={'Athulya'} mail={'athulya@gmail.com'} />
+
+      {/* {firstName} <button onClick={() => changeName('chippy')}>Change Name</button> */}
+      {firstName} <button onClick={() => setFirstName("Apasara")}>Change Name</button> <br />
+
+      {age} <button onClick={() => setAge(age + 1)}>increase the age</button>
+
     </div>
   );
 }

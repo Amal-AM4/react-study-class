@@ -1,0 +1,23 @@
+.card {
+    background-color: rgb(185, 185, 185);
+    padding: 10px 18px;
+    border-radius: 8px;
+    margin: 10px 0;
+    font-size: 18px;
+    font-family: sans-serif;
+    cursor: pointer;
+
+    h2 {
+        background-color: gray;
+        padding: 10px 16px;
+        color: #fafafa;
+    }
+
+    p {
+        span {
+            background-color: white;
+            padding: 4px 10px;
+            border-radius: 12px;
+        }
+    }
+}
