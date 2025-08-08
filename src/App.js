@@ -1,35 +1,40 @@
 import { useState } from "react";
-import CardTitle from "./components/CardTitle";
-import MaterialButton from "./components/MaterialButton";
-
-// let firstName = "anaswara"
-// console.log(firstName);
-
-
-// function changeName(name) {
-//   firstName = name
-//   console.log(firstName);
-// }
+import './App.scss'
 
 
 function App() {
 
-  const [firstName, setFirstName] = useState("anaswara")
+  const [showHeader, setShowHeader] = useState(false)
 
-  const [age, setAge] = useState(0) 
+  const [name, setName] = useState('')
+  const [listOfNames, setListOfNames] = useState([])
+
+  function toggle() {
+    if (showHeader === true) {
+      setShowHeader(false)
+    } else {
+      setShowHeader(true)
+    }
+  }
 
   return (
     <div className="App">
-      <MaterialButton />
-      <MaterialButton />
+      
+    <button onClick={toggle}>Change Show</button>
+    {showHeader ? <h1>Hello</h1> : <h1>NO Hello</h1>}
 
-      <CardTitle name={'Amal'} mail={'amal@gmail.com'} />
-      <CardTitle name={'Athulya'} mail={'athulya@gmail.com'} />
+    <input type="text" onChange={(e) => setName(e.target.value)} />
+    <button onClick={() => {
+      setListOfNames([...listOfNames, name])
+      setName("")
+      console.log(listOfNames);
+      
+    }}>Add Name</button>
 
-      {/* {firstName} <button onClick={() => changeName('chippy')}>Change Name</button> */}
-      {firstName} <button onClick={() => setFirstName("Apasara")}>Change Name</button> <br />
 
-      {age} <button onClick={() => setAge(age + 1)}>increase the age</button>
+    {listOfNames.map((name, key) => {
+      return <h1 key={key}>{name}</h1>
+    })}
 
     </div>
   );
