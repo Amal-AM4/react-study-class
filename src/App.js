@@ -1,29 +1,50 @@
 import { useEffect, useRef, useState } from "react";
 import './App.scss'
+import Task from "./components/Task";
 
 
 function App() {
 
+  // const [taskName, setTaskName] = useState("")
+  // const [time, setTime] = useState("")
+  const [taskList, setTaskList] = useState([])
 
-  const testInput = useRef(null)
+  const inputName = useRef(null)
+  const inputTime = useRef(null)
 
-  const [testValue, testState] = useState('')
+  const addTask = () => {
+    setTaskList([...taskList, {task: inputName.current.value, time: inputTime.current.value}])
 
-  const changePlaceHolder = () => {
-    testInput.current.placeholder = "youtube"
-    testInput.current.focus()
-    console.log(testInput);
+    // This will log the old value (because update hasn't applied yet)
+    console.log("Immediately after set:", taskList); 
     
-    testState(testInput.current.value)
   }
 
-  return (
-    <div className="App" style={{fontSize: 30}}>
-      
-      <input type="text" placeholder="whatsapp" ref={testInput} />
-      <button onClick={changePlaceHolder}>Change Placeholder</button>
+  useEffect(() => {
+    console.log("updated list" + taskList);
+  }, [taskList]);
 
-      <h1>{testValue}</h1>
+  return (
+    <div className="App">
+
+      <div class="container">
+        <h1>Todo list</h1>
+
+        <label>Task Name: </label>
+        <input type="text" id="task" ref={inputName} />
+
+        <label>Task Time: </label>
+        <input type="text" id="task" ref={inputTime} />
+
+        <button onClick={addTask}>Add</button>
+
+      </div>
+
+      {/* <Task taskName="do homework" time="20 minutes" /> */}
+
+      {taskList.map((task) => {
+        return <Task taskName={task.task} time={task.time} />
+      })}
 
     </div>
   );
