@@ -1,41 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import './App.scss'
 
 
 function App() {
 
-  const [showHeader, setShowHeader] = useState(false)
+  const [Number, stateName] = useState(0)
 
-  const [name, setName] = useState('')
-  const [listOfNames, setListOfNames] = useState([])
-
-  function toggle() {
-    if (showHeader === true) {
-      setShowHeader(false)
-    } else {
-      setShowHeader(true)
-    }
-  }
+  useEffect(() => {
+    console.log('page render');
+  }, [Number])
 
   return (
-    <div className="App">
-      
-    <button onClick={toggle}>Change Show</button>
-    {showHeader ? <h1>Hello</h1> : <h1>NO Hello</h1>}
-
-    <input type="text" onChange={(e) => setName(e.target.value)} />
-    <button onClick={() => {
-      setListOfNames([...listOfNames, name])
-      setName("")
-      console.log(listOfNames);
-      
-    }}>Add Name</button>
-
-
-    {listOfNames.map((name, key) => {
-      return <h1 key={key}>{name}</h1>
-    })}
-
+    <div className="App" style={{fontSize: 30}}>
+      <p>{Number} <br /> <button onClick={() => stateName(Number + 1)}>Increase number</button> </p>
     </div>
   );
 }
