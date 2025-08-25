@@ -1,11 +1,15 @@
 import style from "styled-components";
 
-const colorRed = 'red'
-const colorBlue = 'blue'
-const colorGreen = 'green'
-
 export const Button = style.button`
-    width: 200px;
+    width: ${props => props.large ? '500px' : "200px"};
     height: 50px;
-    background-color: ${colorBlue};
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    background-color: ${props => props.color};
+
+    &:hover {
+        cursor: pointer;
+        background-color: ${props => props.darkColor};
+    }
 `;
